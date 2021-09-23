@@ -21,10 +21,10 @@ class projectsController {
 
   async getProject(req, res, next) {
     try {
-      let book = await BookService.getBook(req.params.bookId);
-      book = book ? new projectsDto(book) : {};
+      let project = await ProjectsService.getProject(req.params.bookId);
+      project = project ? new projectsDto(project) : {};
 
-      return res.json({ book });
+      return res.json({ project });
     } catch (e) {
       next(e);
     }

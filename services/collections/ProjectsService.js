@@ -6,7 +6,7 @@ class ProjectsService {
     return await Projects.findAll();
   }
 
-  async getBook(projectsId) {
+  async getProject(projectsId) {
     return await Projects.findOne({ where: { id: projectsId } });
   }
 }
