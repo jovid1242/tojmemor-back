@@ -34,6 +34,13 @@ router.post(
 // projects
 router.get("/projects", projectsController.getAll);
 router.get("/projects/:projectsId", projectsController.getProject);
+router.post("/projects/create", projectsController.createProject);
+
+// получение картинки
+router.get("/image/:img", (req, res) => {
+  const fileName = req.params.img;
+  res.sendFile(path.join(__dirname + `/uploads/${fileName}`));
+});
 
 // films
 // router.get("/film", filmController.getAll);
