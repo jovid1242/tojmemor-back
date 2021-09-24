@@ -6,6 +6,13 @@ class EventsService {
     return await Events.findAll();
   }
 
+  async getByPage(page, limit) {
+    return await Events.findAndCountAll({
+      offset: page,
+      limit: limit,
+    });
+  }
+
   async getEvents(eventsId) {
     return await Events.findOne({ where: { id: eventsId } });
   }

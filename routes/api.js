@@ -48,6 +48,7 @@ router.delete("/news/delete/:newsId", newsController.deleteNews);
 // events , delete events by id , create events , update events by id (акция)
 router.get("/events", eventsController.getAll);
 router.get("/events/:eventsId", eventsController.getEvent);
+router.get("/event", eventsController.getByPage);
 router.post("/events/create", eventsController.createEvents);
 router.put("/events/update/:eventsId", eventsController.updateEvents);
 router.delete("/events/delete/:eventsId", eventsController.deleteEvents);
