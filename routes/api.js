@@ -7,6 +7,7 @@ const adminMiddleware = require("../middlewares/adminMiddleware");
 const authController = require("../controllers/authController");
 const projectsController = require("../controllers/projectsController");
 const newsController = require("../controllers/newsController");
+const eventsController = require("../controllers/eventsController");
 
 router.post(
   "/register",
@@ -43,6 +44,13 @@ router.get("/news/:newsId", newsController.getNews);
 router.post("/news/create", newsController.createNews);
 router.put("/news/update/:newsId", newsController.updateNews);
 router.delete("/news/delete/:newsId", newsController.deleteNews);
+
+// events , delete events by id , create events , update events by id (акция)
+router.get("/events", eventsController.getAll);
+router.get("/events/:eventsId", eventsController.getEvent);
+router.post("/events/create", eventsController.createEvents);
+router.put("/events/update/:eventsId", eventsController.updateEvents);
+router.delete("/events/delete/:eventsId", eventsController.deleteEvents);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {
