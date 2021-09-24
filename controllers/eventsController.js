@@ -10,12 +10,26 @@ class eventsController {
     try {
       const events = [];
       const collections = await EventsService.getAll();
-
       collections.forEach((el) => {
         events.push(new eventsDto(el));
       });
 
       return res.json({ events });
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async getByPage(req, res, next) {
+    try {
+      const reqPage = req.query.page > 0 ? req.query.page : 1;
+      const collections = await EventsService.getAll();
+      const limits = 3;
+      const page = (reqPage - 1) * limits;
+      const countPage = Math.round(collections.length / limits);
+      const events = await EventsService.getByPage(page, limits);
+
+      return res.json({ pages: countPage, events });
     } catch (e) {
       next(e);
     }
