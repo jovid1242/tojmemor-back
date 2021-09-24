@@ -20,6 +20,10 @@ class ProjectsService {
       if (obj) return obj.update(value);
     });
   }
+
+  async deleteProject(id) {
+    return Projects.destroy({ where: { id: id } });
+  }
 }
 
 module.exports = new ProjectsService();

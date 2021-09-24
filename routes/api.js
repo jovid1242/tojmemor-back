@@ -39,6 +39,8 @@ router.get("/projects/:projectId", projectsController.getProject);
 router.post("/projects/create", projectsController.createProject);
 // update project by id
 router.put("/projects/update/:id", projectsController.updateProject);
+// delete project by id
+router.delete("/projects/delete/:projectId", projectsController.deleteProject);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {

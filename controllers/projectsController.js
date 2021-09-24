@@ -100,11 +100,19 @@ class projectsController {
     }
   }
 
+  async deleteProject(req, res, next) {
+    try {
+      let project = await ProjectsService.deleteProject(req.params.projectId);
+
+      return res.json({ project });
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async getProject(req, res, next) {
     try {
       let project = await ProjectsService.getProject(req.params.projectId);
-      project = project ? new projectsDto(project) : {};
-
       return res.json({ project });
     } catch (e) {
       next(e);
