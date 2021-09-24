@@ -5,10 +5,8 @@ const path = require("path");
 const authMiddleware = require("../middlewares/authMiddleware");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 const authController = require("../controllers/authController");
-const courseController = require("../controllers/courseController");
-const lessionController = require("../controllers/lessionController");
 const projectsController = require("../controllers/projectsController");
-const filmController = require("../controllers/filmController");
+const newsController = require("../controllers/newsController");
 
 router.post(
   "/register",
@@ -32,15 +30,19 @@ router.post(
 // router.get("/course/:courseId/lession", lessionController.getAll);
 // router.get("/course/lession/:lessionId", lessionController.getLession);
 
-// projects
+// projects, delete project by id , create project , update project by id
 router.get("/projects", projectsController.getAll);
 router.get("/projects/:projectId", projectsController.getProject);
-// create project
 router.post("/projects/create", projectsController.createProject);
-// update project by id
 router.put("/projects/update/:id", projectsController.updateProject);
-// delete project by id
 router.delete("/projects/delete/:projectId", projectsController.deleteProject);
+
+// news , delete news by id , create news , update news by id
+router.get("/news", newsController.getAll);
+router.get("/news/:newsId", newsController.getNews);
+router.post("/news/create", newsController.createNews);
+router.put("/news/update/:newsId", newsController.updateNews);
+router.delete("/news/delete/:newsId", newsController.deleteNews);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {

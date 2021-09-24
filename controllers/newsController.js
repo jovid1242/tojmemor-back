@@ -1,27 +1,27 @@
 const { validationResult } = require("express-validator");
-const projectsDto = require("../dtos/projectsDto");
+const newsDto = require("../dtos/newsDto");
 const ApiError = require("../exceptions/apiError");
-const ProjectsService = require("../services/collections/ProjectsService");
+const NewsService = require("../services/collections/NewsService");
 const path = require("path");
 const uuid = require("uuid");
 
-class projectsController {
+class newsController {
   async getAll(req, res, next) {
     try {
-      const projects = [];
-      const collections = await ProjectsService.getAll();
+      const news = [];
+      const collections = await NewsService.getAll();
 
       collections.forEach((el) => {
-        projects.push(new projectsDto(el));
+        news.push(new newsDto(el));
       });
 
-      return res.json({ projects });
+      return res.json({ news });
     } catch (e) {
       next(e);
     }
   }
 
-  async createProject(req, res, next) {
+  async createNews(req, res, next) {
     try {
       let params = req.body;
       let file = req.files.image;
@@ -37,21 +37,22 @@ class projectsController {
         }
       );
 
-      const project = {
+      const news = {
         text: params.text,
         title: params.title,
+        data: params.data,
         url: params.url,
         image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
       };
 
-      const creating = await ProjectsService.createProject(project);
+      const creating = await NewsService.createNews(news);
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async updateProject(req, res, next) {
+  async updateNews(req, res, next) {
     try {
       let params = req.body;
       if (req.files !== null) {
@@ -68,55 +69,51 @@ class projectsController {
           }
         );
 
-        const project = {
+        const news = {
           text: params.text,
           title: params.title,
+          data: params.data,
           url: params.url,
           image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
         };
 
-        const creating = await ProjectsService.updateProject(
-          project,
-          req.params.id
-        );
+        const creating = await NewsService.updateNews(news, req.params.newsId);
         return res.json({ creating });
       }
 
-      const project = {
+      const news = {
         text: params.text,
         title: params.title,
         url: params.url,
+        data: params.data,
         image: params.image,
       };
 
-      const creating = await ProjectsService.updateProject(
-        project,
-        req.params.id
-      );
+      const creating = await NewsService.updateNews(news, req.params.newsId);
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async deleteProject(req, res, next) {
+  async deleteNews(req, res, next) {
     try {
-      let project = await ProjectsService.deleteProject(req.params.projectId);
+      let news = await NewsService.deleteNews(req.params.newsId);
 
-      return res.json({ project });
+      return res.json({ news });
     } catch (e) {
       next(e);
     }
   }
 
-  async getProject(req, res, next) {
+  async getNews(req, res, next) {
     try {
-      let project = await ProjectsService.getProject(req.params.projectId);
-      return res.json({ project });
+      let news = await NewsService.getNews(req.params.newsId);
+      return res.json({ news });
     } catch (e) {
       next(e);
     }
   }
 }
 
-module.exports = new projectsController();
+module.exports = new newsController();
