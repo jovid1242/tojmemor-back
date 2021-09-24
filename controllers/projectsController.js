@@ -26,9 +26,9 @@ class projectsController {
     try {
       let params = req.body;
       let file = req.files.image;
-
       const typeImage = file.mimetype.split("/").splice(1, 1);
       const newNameFile = `${uuid.v4()}.${typeImage}`;
+
       file.mv(
         path.join(__dirname + "/../uploads", "images/") + newNameFile,
         (err) => {
@@ -46,7 +46,54 @@ class projectsController {
       };
 
       const creating = await ProjectsService.createProject(project);
+      return res.json({ creating });
+    } catch (e) {
+      next(e);
+    }
+  }
 
+  async updateProject(req, res, next) {
+    try {
+      let params = req.body;
+      if (req.files !== null) {
+        let file = req.files.image;
+        const typeImage = file.mimetype.split("/").splice(1, 1);
+        const newNameFile = `${uuid.v4()}.${typeImage}`;
+
+        file.mv(
+          path.join(__dirname + "/../uploads", "images/") + newNameFile,
+          (err) => {
+            if (err) {
+              throw ApiError.BadRequest("Ошибка при загрузка файла");
+            }
+          }
+        );
+
+        const project = {
+          text: params.text,
+          title: params.title,
+          url: params.url,
+          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        };
+
+        const creating = await ProjectsService.updateProject(
+          project,
+          req.params.id
+        );
+        return res.json({ creating });
+      }
+
+      const project = {
+        text: params.text,
+        title: params.title,
+        url: params.url,
+        image: params.image,
+      };
+
+      const creating = await ProjectsService.updateProject(
+        project,
+        req.params.id
+      );
       return res.json({ creating });
     } catch (e) {
       next(e);

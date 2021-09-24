@@ -13,6 +13,13 @@ class ProjectsService {
   async createProject(value) {
     return await Projects.create(value);
   }
+
+  async updateProject(value, id) {
+    return Projects.findOne({ where: { id: id } }).then(function (obj) {
+      // update
+      if (obj) return obj.update(value);
+    });
+  }
 }
 
 module.exports = new ProjectsService();

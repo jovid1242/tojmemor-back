@@ -1,6 +1,7 @@
 const Router = require("express").Router;
 const router = new Router();
 const { body } = require("express-validator");
+const path = require("path");
 const authMiddleware = require("../middlewares/authMiddleware");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 const authController = require("../controllers/authController");
@@ -33,13 +34,16 @@ router.post(
 
 // projects
 router.get("/projects", projectsController.getAll);
-router.get("/projects/:projectsId", projectsController.getProject);
+router.get("/projects/:projectId", projectsController.getProject);
+// create project
 router.post("/projects/create", projectsController.createProject);
+// update project by id
+router.put("/projects/update/:id", projectsController.updateProject);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {
   const fileName = req.params.img;
-  res.sendFile(path.join(__dirname + `/uploads/${fileName}`));
+  res.sendFile(path.join(__dirname + "/../uploads", "images/") + fileName);
 });
 
 // films
