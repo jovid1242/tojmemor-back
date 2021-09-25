@@ -8,6 +8,7 @@ const authController = require("../controllers/authController");
 const projectsController = require("../controllers/projectsController");
 const newsController = require("../controllers/newsController");
 const eventsController = require("../controllers/eventsController");
+const videoController = require("../controllers/videoController");
 
 router.post(
   "/register",
@@ -34,6 +35,7 @@ router.post(
 // projects, delete project by id , create project , update project by id
 router.get("/projects", projectsController.getAll);
 router.get("/projects/:projectId", projectsController.getProject);
+router.get("/get_projects", projectsController.getByPage);
 router.post("/projects/create", projectsController.createProject);
 router.put("/projects/update/:id", projectsController.updateProject);
 router.delete("/projects/delete/:projectId", projectsController.deleteProject);
@@ -41,6 +43,7 @@ router.delete("/projects/delete/:projectId", projectsController.deleteProject);
 // news , delete news by id , create news , update news by id
 router.get("/news", newsController.getAll);
 router.get("/news/:newsId", newsController.getNews);
+router.get("/get_news", newsController.getByPage);
 router.post("/news/create", newsController.createNews);
 router.put("/news/update/:newsId", newsController.updateNews);
 router.delete("/news/delete/:newsId", newsController.deleteNews);
@@ -48,10 +51,18 @@ router.delete("/news/delete/:newsId", newsController.deleteNews);
 // events , delete events by id , create events , update events by id (акция)
 router.get("/events", eventsController.getAll);
 router.get("/events/:eventsId", eventsController.getEvent);
-router.get("/event", eventsController.getByPage);
+router.get("/get_events", eventsController.getByPage);
 router.post("/events/create", eventsController.createEvents);
 router.put("/events/update/:eventsId", eventsController.updateEvents);
 router.delete("/events/delete/:eventsId", eventsController.deleteEvents);
+
+// video , delete video by id , create video , update video by id (Видео)
+router.get("/video", videoController.getAll);
+router.get("/video/:videoId", videoController.getVideo);
+router.get("/get_video", videoController.getByPage);
+router.post("/video/create", videoController.createVideo);
+router.put("/video/update/:videoId", videoController.updateVideo);
+router.delete("/video/delete/:videoId", videoController.deleteVideo);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {

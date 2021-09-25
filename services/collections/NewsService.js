@@ -6,6 +6,13 @@ class NewsService {
     return await News.findAll();
   }
 
+  async getByPage(page, limit) {
+    return await News.findAndCountAll({
+      offset: page,
+      limit: limit,
+    });
+  }
+
   async getNews(newsId) {
     return await News.findOne({ where: { id: newsId } });
   }

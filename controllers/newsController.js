@@ -21,6 +21,21 @@ class newsController {
     }
   }
 
+  async getByPage(req, res, next) {
+    try {
+      const reqPage = req.query.page > 0 ? req.query.page : 1;
+      const collections = await NewsService.getAll();
+      const limits = 3;
+      const page = (reqPage - 1) * limits;
+      const countPage = Math.round(collections.length / limits) > 0 ? 0 : 1;
+      const news = await NewsService.getByPage(page, limits);
+
+      return res.json({ pages: countPage, news });
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async createNews(req, res, next) {
     try {
       let params = req.body;
