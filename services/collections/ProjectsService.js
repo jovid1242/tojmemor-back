@@ -6,6 +6,13 @@ class ProjectsService {
     return await Projects.findAll();
   }
 
+  async getByPage(page, limit) {
+    return await Projects.findAndCountAll({
+      offset: page,
+      limit: limit,
+    });
+  }
+
   async getProject(projectsId) {
     return await Projects.findOne({ where: { id: projectsId } });
   }

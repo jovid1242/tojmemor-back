@@ -1,21 +1,20 @@
-const { validationResult } = require("express-validator");
 const projectsDto = require("../dtos/projectsDto");
 const ApiError = require("../exceptions/apiError");
-const ProjectsService = require("../services/collections/ProjectsService");
+const VideoService = require("../services/collections/VideoService");
 const path = require("path");
 const uuid = require("uuid");
 
-class projectsController {
+class videoController {
   async getAll(req, res, next) {
     try {
-      const projects = [];
-      const collections = await ProjectsService.getAll();
+      const video = [];
+      const collections = await VideoService.getAll();
 
       collections.forEach((el) => {
-        projects.push(new projectsDto(el));
+        video.push(new projectsDto(el));
       });
 
-      return res.json({ projects });
+      return res.json({ video });
     } catch (e) {
       next(e);
     }
@@ -24,19 +23,19 @@ class projectsController {
   async getByPage(req, res, next) {
     try {
       const reqPage = req.query.page > 0 ? req.query.page : 1;
-      const collections = await ProjectsService.getAll();
+      const collections = await VideoService.getAll();
       const limits = 3;
       const page = (reqPage - 1) * limits;
       const countPage = Math.round(collections.length / limits) > 0 ? 0 : 1;
-      const projects = await ProjectsService.getByPage(page, limits);
+      const video = await VideoService.getByPage(page, limits);
 
-      return res.json({ pages: countPage, projects });
+      return res.json({ pages: countPage, video });
     } catch (e) {
       next(e);
     }
   }
 
-  async createProject(req, res, next) {
+  async createVideo(req, res, next) {
     try {
       let params = req.body;
       let file = req.files.image;
@@ -52,21 +51,21 @@ class projectsController {
         }
       );
 
-      const project = {
+      const data = {
         text: params.text,
         title: params.title,
-        url: params.url,
+        urlVideo: params.urlVideo,
         image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
       };
 
-      const creating = await ProjectsService.createProject(project);
+      const creating = await VideoService.createVideo(data);
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async updateProject(req, res, next) {
+  async updateVideo(req, res, next) {
     try {
       let params = req.body;
       if (req.files !== null) {
@@ -83,55 +82,52 @@ class projectsController {
           }
         );
 
-        const project = {
+        const data = {
           text: params.text,
           title: params.title,
-          url: params.url,
+          urlVideo: params.urlVideo,
           image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
         };
 
-        const creating = await ProjectsService.updateProject(
-          project,
-          req.params.id
+        const creating = await VideoService.updateVideo(
+          data,
+          req.params.videoId
         );
         return res.json({ creating });
       }
 
-      const project = {
+      const data = {
         text: params.text,
         title: params.title,
-        url: params.url,
+        urlVideo: params.urlVideo,
         image: params.image,
       };
 
-      const creating = await ProjectsService.updateProject(
-        project,
-        req.params.id
-      );
+      const creating = await VideoService.updateVideo(data, req.params.videoId);
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async deleteProject(req, res, next) {
+  async deleteVideo(req, res, next) {
     try {
-      let project = await ProjectsService.deleteProject(req.params.projectId);
+      let video = await VideoService.deleteVideo(req.params.videoId);
 
-      return res.json({ project });
+      return res.json({ video });
     } catch (e) {
       next(e);
     }
   }
 
-  async getProject(req, res, next) {
+  async getVideo(req, res, next) {
     try {
-      let project = await ProjectsService.getProject(req.params.projectId);
-      return res.json({ project });
+      let video = await VideoService.getVideo(req.params.videoId);
+      return res.json({ video });
     } catch (e) {
       next(e);
     }
   }
 }
 
-module.exports = new projectsController();
+module.exports = new videoController();

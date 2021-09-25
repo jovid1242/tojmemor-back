@@ -26,7 +26,7 @@ class eventsController {
       const collections = await EventsService.getAll();
       const limits = 3;
       const page = (reqPage - 1) * limits;
-      const countPage = Math.round(collections.length / limits);
+      const countPage = Math.round(collections.length / limits) > 0 ? 0 : 1;
       const events = await EventsService.getByPage(page, limits);
 
       return res.json({ pages: countPage, events });
