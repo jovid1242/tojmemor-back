@@ -24,14 +24,6 @@ router.post(
   authController.login
 );
 
-// course
-// router.get("/course", courseController.getAll);
-// router.get("/course/:courseId", courseController.getCourse);
-
-// lessions
-// router.get("/course/:courseId/lession", lessionController.getAll);
-// router.get("/course/lession/:lessionId", lessionController.getLession);
-
 // projects, delete project by id , create project , update project by id
 router.get("/projects", projectsController.getAll);
 router.get("/projects/:projectId", projectsController.getProject);
@@ -69,9 +61,5 @@ router.get("/image/:img", (req, res) => {
   const fileName = req.params.img;
   res.sendFile(path.join(__dirname + "/../uploads", "images/") + fileName);
 });
-
-// films
-// router.get("/film", filmController.getAll);
-// router.get("/film/:filmId", filmController.getFilm);
 
 module.exports = router;
