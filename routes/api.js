@@ -9,11 +9,14 @@ const projectsController = require("../controllers/projectsController");
 const newsController = require("../controllers/newsController");
 const eventsController = require("../controllers/eventsController");
 const videoController = require("../controllers/videoController");
+const sliderController = require("../controllers/sliderController");
+const userController = require("../controllers/userController");
 
 router.post(
   "/register",
   body("name").isLength({ min: 3 }),
   body("email").isLength({ min: 3 }),
+  body("status").isLength({ min: 3 }),
   body("password").isLength({ min: 3, max: 32 }),
   authController.registration
 );
@@ -23,6 +26,13 @@ router.post(
   body("password").isLength({ min: 3, max: 32 }),
   authController.login
 );
+
+// user
+router.get("/users", userController.getAll);
+router.get("/user/:id", userController.getUser);
+router.get("/get_users", userController.getByPage);
+router.put("/user/update/:id", userController.updateUser);
+router.delete("/user/delete/:id", userController.deleteUser);
 
 // projects, delete project by id , create project , update project by id
 router.get("/projects", projectsController.getAll);
@@ -55,6 +65,14 @@ router.get("/get_video", videoController.getByPage);
 router.post("/video/create", videoController.createVideo);
 router.put("/video/update/:videoId", videoController.updateVideo);
 router.delete("/video/delete/:videoId", videoController.deleteVideo);
+
+// slider , delete slider by id , create slider , update slider by id (Видео)
+router.get("/slider", sliderController.getAll);
+router.get("/slider/:sliderId", sliderController.getSlider);
+router.get("/get_slider", sliderController.getByPage);
+router.post("/slider/create", sliderController.createSlider);
+router.put("/slider/update/:sliderId", sliderController.updateSlider);
+router.delete("/slider/delete/:sliderId", sliderController.deleteSlider);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {

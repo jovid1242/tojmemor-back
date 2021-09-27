@@ -29,7 +29,7 @@ class videoService {
   }
 
   async deleteVideo(id) {
-    return Video.destroy({ where: { id: id } });
+    return Video.destroy({ where: { id } });
   }
 }
 

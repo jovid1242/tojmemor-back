@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Slider",
-      tableName: "slider",
+      tableName: "sliders",
     }
   );
   return Slider;

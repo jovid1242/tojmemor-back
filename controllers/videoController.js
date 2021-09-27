@@ -24,11 +24,13 @@ class videoController {
     try {
       const reqPage = req.query.page > 0 ? req.query.page : 1;
       const collections = await VideoService.getAll();
-      const limits = 3;
+      const limits = 6;
       const page = (reqPage - 1) * limits;
-      const countPage = Math.round(collections.length / limits) > 0 ? 0 : 1;
+      const countPage = Math.round(collections.length / limits);
       const video = await VideoService.getByPage(page, limits);
-
+      if (countPage === 0) {
+        return res.json({ pages: 1, video });
+      }
       return res.json({ pages: countPage, video });
     } catch (e) {
       next(e);

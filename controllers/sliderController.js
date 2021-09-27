@@ -1,21 +1,20 @@
-const { validationResult } = require("express-validator");
-const newsDto = require("../dtos/newsDto");
+const sliderDto = require("../dtos/sliderDto");
 const ApiError = require("../exceptions/apiError");
-const NewsService = require("../services/collections/NewsService");
+const SliderService = require("../services/collections/SliderService");
 const path = require("path");
 const uuid = require("uuid");
 
-class newsController {
+class sliderController {
   async getAll(req, res, next) {
     try {
-      const news = [];
-      const collections = await NewsService.getAll();
+      const slider = [];
+      const collections = await SliderService.getAll();
 
       collections.forEach((el) => {
-        news.push(new newsDto(el));
+        slider.push(new sliderDto(el));
       });
 
-      return res.json({ news });
+      return res.json({ slider });
     } catch (e) {
       next(e);
     }
@@ -24,21 +23,21 @@ class newsController {
   async getByPage(req, res, next) {
     try {
       const reqPage = req.query.page > 0 ? req.query.page : 1;
-      const collections = await NewsService.getAll();
+      const collections = await SliderService.getAll();
       const limits = 6;
       const page = (reqPage - 1) * limits;
       const countPage = Math.round(collections.length / limits);
-      const news = await NewsService.getByPage(page, limits);
+      const slider = await SliderService.getByPage(page, limits);
       if (countPage === 0) {
-        return res.json({ pages: 1, news });
+        return res.json({ pages: 1, slider });
       }
-      return res.json({ pages: countPage, news });
+      return res.json({ pages: countPage, slider });
     } catch (e) {
       next(e);
     }
   }
 
-  async createNews(req, res, next) {
+  async createSlider(req, res, next) {
     try {
       let params = req.body;
       let file = req.files.image;
@@ -54,22 +53,21 @@ class newsController {
         }
       );
 
-      const news = {
+      const data = {
         text: params.text,
         title: params.title,
-        data: params.data,
         url: params.url,
         image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
       };
 
-      const creating = await NewsService.createNews(news);
+      const creating = await SliderService.createSlider(data);
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async updateNews(req, res, next) {
+  async updateSlider(req, res, next) {
     try {
       let params = req.body;
       if (req.files !== null) {
@@ -86,51 +84,55 @@ class newsController {
           }
         );
 
-        const news = {
+        const data = {
           text: params.text,
           title: params.title,
-          data: params.data,
           url: params.url,
           image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
         };
 
-        const creating = await NewsService.updateNews(news, req.params.newsId);
+        const creating = await SliderService.updateSlider(
+          data,
+          req.params.sliderId
+        );
         return res.json({ creating });
       }
 
-      const news = {
+      const data = {
         text: params.text,
         title: params.title,
         url: params.url,
-        data: params.data,
         image: params.image,
       };
 
-      const creating = await NewsService.updateNews(news, req.params.newsId);
+      const creating = await SliderService.updateSlider(
+        data,
+        req.params.sliderId
+      );
       return res.json({ creating });
     } catch (e) {
       next(e);
     }
   }
 
-  async deleteNews(req, res, next) {
+  async deleteSlider(req, res, next) {
     try {
-      let news = await NewsService.deleteNews(req.params.newsId);
+      let slider = await SliderService.deleteSlider(req.params.sliderId);
 
-      return res.json({ news });
+      return res.json({ slider });
     } catch (e) {
       next(e);
     }
   }
 
-  async getNews(req, res, next) {
+  async getSlider(req, res, next) {
     try {
-      let news = await NewsService.getNews(req.params.newsId);
-      return res.json({ news });
+      let slider = await SliderService.getSlider(req.params.sliderId);
+      return res.json({ slider });
     } catch (e) {
       next(e);
     }
   }
 }
 
-module.exports = new newsController();
+module.exports = new sliderController();
