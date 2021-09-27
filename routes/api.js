@@ -11,6 +11,7 @@ const eventsController = require("../controllers/eventsController");
 const videoController = require("../controllers/videoController");
 const sliderController = require("../controllers/sliderController");
 const userController = require("../controllers/userController");
+const applicationController = require("../controllers/applicationsController");
 
 router.post(
   "/register",
@@ -73,6 +74,11 @@ router.get("/get_slider", sliderController.getByPage);
 router.post("/slider/create", sliderController.createSlider);
 router.put("/slider/update/:sliderId", sliderController.updateSlider);
 router.delete("/slider/delete/:sliderId", sliderController.deleteSlider);
+
+// slider , delete slider by id , create slider , update slider by id (Видео)
+router.get("/application", applicationController.getAll);
+router.get("/get_application", applicationController.getByPage);
+router.post("/application/create", applicationController.createApplication);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {
