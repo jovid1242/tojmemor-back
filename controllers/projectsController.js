@@ -25,11 +25,13 @@ class projectsController {
     try {
       const reqPage = req.query.page > 0 ? req.query.page : 1;
       const collections = await ProjectsService.getAll();
-      const limits = 3;
+      const limits = 6;
       const page = (reqPage - 1) * limits;
-      const countPage = Math.round(collections.length / limits) > 0 ? 0 : 1;
+      const countPage = Math.round(collections.length / limits);
       const projects = await ProjectsService.getByPage(page, limits);
-
+      if (countPage === 0) {
+        return res.json({ pages: 1, projects });
+      }
       return res.json({ pages: countPage, projects });
     } catch (e) {
       next(e);
