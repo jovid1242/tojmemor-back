@@ -12,6 +12,7 @@ const videoController = require("../controllers/videoController");
 const sliderController = require("../controllers/sliderController");
 const userController = require("../controllers/userController");
 const applicationController = require("../controllers/applicationsController");
+const teamController = require("../controllers/teamController");
 
 router.post(
   "/register",
@@ -75,10 +76,18 @@ router.post("/slider/create", sliderController.createSlider);
 router.put("/slider/update/:sliderId", sliderController.updateSlider);
 router.delete("/slider/delete/:sliderId", sliderController.deleteSlider);
 
-// slider , delete slider by id , create slider , update slider by id (Видео)
+// application
 router.get("/application", applicationController.getAll);
 router.get("/get_application", applicationController.getByPage);
 router.post("/application/create", applicationController.createApplication);
+
+// team , delete team by id , create team , update team by id
+router.get("/team", teamController.getAll);
+router.get("/team/:id", teamController.getTeam);
+router.get("/get_team", teamController.getByPage);
+router.post("/team/create", teamController.createTeam);
+router.put("/team/update/:id", teamController.updateTeam);
+router.delete("/team/delete/:id", teamController.deleteTeam);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {
