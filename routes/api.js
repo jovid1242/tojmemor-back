@@ -13,6 +13,7 @@ const sliderController = require("../controllers/sliderController");
 const userController = require("../controllers/userController");
 const applicationController = require("../controllers/applicationsController");
 const teamController = require("../controllers/teamController");
+const analiticsController = require("../controllers/analiticsController");
 
 router.post(
   "/register",
@@ -88,6 +89,9 @@ router.get("/get_team", teamController.getByPage);
 router.post("/team/create", teamController.createTeam);
 router.put("/team/update/:id", teamController.updateTeam);
 router.delete("/team/delete/:id", teamController.deleteTeam);
+
+// analitics
+router.get("/analitics", analiticsController.getAll);
 
 // получение картинки
 router.get("/image/:img", (req, res) => {
