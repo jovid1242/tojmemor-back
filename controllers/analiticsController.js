@@ -28,23 +28,11 @@ class analiticsController {
         "Дек",
       ];
       var arrData = [
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-        { n: 0 },
-      ];
+        0,0,0,0,0,0,0,0,0,0,0,0
+      ]; 
       analitics.map((el) => {
-        // arrData[toString(el.createdAt).split(" ")[0].split("-")[1] - 1].n += +1;
         let a = el.createdAt.toLocaleString();
-        arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1].n +=
+        arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
           +1;
       });
 
