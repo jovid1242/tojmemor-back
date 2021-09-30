@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "jovid",
+    "password": "B0b0@Web",
+    "database": "tojmemor",
+    "host": "3306",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "x21122112x$creativity",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "x21122112x$creativity",
+    "database": "insta",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
