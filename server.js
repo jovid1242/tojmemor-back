@@ -15,5 +15,5 @@ app.use("/api", api);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
-  console.log(`APP app listening at http://localhost:${PORT}`);
+  console.log(`APP app listening aat http://localhost:${PORT}`);
 });
