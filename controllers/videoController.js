@@ -58,7 +58,7 @@ class videoController {
         text: params.text,
         title: params.title,
         urlVideo: params.urlVideo,
-        image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
       };
 
       const creating = await VideoService.createVideo(data);
@@ -89,7 +89,7 @@ class videoController {
           text: params.text,
           title: params.title,
           urlVideo: params.urlVideo,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
         };
 
         const creating = await VideoService.updateVideo(

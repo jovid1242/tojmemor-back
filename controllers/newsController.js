@@ -59,7 +59,7 @@ class newsController {
         title: params.title,
         data: params.data,
         url: params.url,
-        image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
       };
 
       const creating = await NewsService.createNews(news);
@@ -91,7 +91,7 @@ class newsController {
           title: params.title,
           data: params.data,
           url: params.url,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
         };
 
         const creating = await NewsService.updateNews(news, req.params.newsId);

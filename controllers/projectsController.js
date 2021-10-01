@@ -58,7 +58,7 @@ class projectsController {
         text: params.text,
         title: params.title,
         url: params.url,
-        image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
       };
 
       const creating = await ProjectsService.createProject(project);
@@ -89,7 +89,7 @@ class projectsController {
           text: params.text,
           title: params.title,
           url: params.url,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
         };
 
         const creating = await ProjectsService.updateProject(

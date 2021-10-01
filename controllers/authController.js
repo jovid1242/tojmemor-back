@@ -27,7 +27,7 @@ class UserController {
         }
       );
 
-      const image = `http://localhost:${process.env.PORT}/api/image/${newNameFile}`;
+      const image = `${process.env.DOMEN_BACK}/api/image/${newNameFile}`;
       const userData = await userService.registrate(
         name,
         email,

@@ -75,7 +75,7 @@ class userController {
           name: params.name,
           email: params.email,
           status: params.status,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
         };
 
         const creating = await UserService.updateUser(data, req.params.id);

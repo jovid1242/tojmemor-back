@@ -56,7 +56,7 @@ class teamController {
       const data = {
         name: params.name,
         profession: params.profession,
-        image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
       };
 
       const creating = await TeamService.createTeam(data);
@@ -86,7 +86,7 @@ class teamController {
         const data = {
           name: params.name,
           profession: params.profession,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.PORT}/api/image/${newNameFile}`,
         };
 
         const creating = await TeamService.updateTeam(data, req.params.id);

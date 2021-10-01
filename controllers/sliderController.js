@@ -57,7 +57,7 @@ class sliderController {
         text: params.text,
         title: params.title,
         url: params.url,
-        image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+        image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
       };
 
       const creating = await SliderService.createSlider(data);
@@ -88,7 +88,7 @@ class sliderController {
           text: params.text,
           title: params.title,
           url: params.url,
-          image: `http://localhost:${process.env.PORT}/api/image/${newNameFile}`,
+          image: `${process.env.DOMEN_BACK}/api/image/${newNameFile}`,
         };
 
         const creating = await SliderService.updateSlider(
