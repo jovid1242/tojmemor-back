@@ -31,9 +31,9 @@ class analiticsController {
         0,0,0,0,0,0,0,0,0,0,0,0
       ]; 
       analitics.map((el) => {
-        let a = el.createdAt.toLocaleString(); 
-        // arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
-        //   +1;
+        let a = el.createdAt.toLocaleString();
+        arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
+          +1;
       });
 
       return res.json({ arrMonth, arrData });
