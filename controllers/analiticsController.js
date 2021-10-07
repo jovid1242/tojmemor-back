@@ -9,7 +9,6 @@ class analiticsController {
       const analitics = [];
 
       const collections = await ApplicationService.getAll();
-      console.log('colec', collections);
       collections.forEach((el) => {
         analitics.push(new applicationDto(el));
       });
@@ -33,8 +32,10 @@ class analiticsController {
       ]; 
       analitics.map((el) => {
         let a = el.createdAt.toLocaleString();
-        arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
-          +1;
+        
+      console.log('colec', a);
+        // arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
+        //   +1;
       });
 
       return res.json({ arrMonth, arrData });
