@@ -31,9 +31,8 @@ class analiticsController {
         0,0,0,0,0,0,0,0,0,0,0,0
       ]; 
       analitics.map((el) => {
-        let a = el.createdAt.toLocaleString();
-        
-      console.log('colec', a);
+        let a = el.createdAt.toLocaleString(); 
+      console.log('colec', typof (a));
         // arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
         //   +1;
       });
