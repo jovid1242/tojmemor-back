@@ -32,7 +32,7 @@ class analiticsController {
       ]; 
       analitics.map((el) => {
         let a = el.createdAt.toLocaleString(); 
-      console.log('colec', typeof (a));
+      console.log('colec', typeof a );
         // arrData[a.toString().split(",")[0].split(".")[1].split("")[1] - 1] +=
         //   +1;
       });
