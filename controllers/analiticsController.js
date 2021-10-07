@@ -9,6 +9,7 @@ class analiticsController {
       const analitics = [];
 
       const collections = await ApplicationService.getAll();
+      console.log('colec', collections);
       collections.forEach((el) => {
         analitics.push(new applicationDto(el));
       });
