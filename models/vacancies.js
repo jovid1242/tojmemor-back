@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Vacancies.init(
     {
       title: DataTypes.STRING,
-      text: DataTypes.STRING,
+      text: DataTypes.TEXT,
       description: DataTypes.STRING,
     },
     {
