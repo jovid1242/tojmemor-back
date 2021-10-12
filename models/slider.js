@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Slider.init(
     {
-      title: DataTypes.STRING,
+      title: DataTypes.TEXT,
       text: DataTypes.TEXT,
       url: DataTypes.STRING,
       image: DataTypes.STRING,
