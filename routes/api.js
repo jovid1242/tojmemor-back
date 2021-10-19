@@ -14,6 +14,7 @@ const userController = require("../controllers/userController");
 const applicationController = require("../controllers/applicationsController");
 const teamController = require("../controllers/teamController");
 const analiticsController = require("../controllers/analiticsController");
+const pr_sliderController = require("../controllers/pr_sliderController");
 
 router.post(
   "/register",
@@ -44,6 +45,11 @@ router.get("/get_projects", projectsController.getByPage);
 router.post("/projects/create", projectsController.createProject);
 router.put("/projects/update/:id", projectsController.updateProject);
 router.delete("/projects/delete/:projectId", projectsController.deleteProject);
+
+router.post("/pr_slider/create", pr_sliderController.createSlider);
+router.get("/pr_slider", pr_sliderController.getAll);
+router.put("/pr_slider/update/:id", pr_sliderController.updateSlider);
+router.delete("/pr_slider/delete/:id", pr_sliderController.deleteSlider);
 
 // news , delete news by id , create news , update news by id
 router.get("/news", newsController.getAll);
