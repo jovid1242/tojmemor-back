@@ -15,6 +15,8 @@ const applicationController = require("../controllers/applicationsController");
 const teamController = require("../controllers/teamController");
 const analiticsController = require("../controllers/analiticsController");
 const pr_sliderController = require("../controllers/pr_sliderController");
+const pr_layoutController = require("../controllers/pr_layoutController");
+const pr_advantagesController = require("../controllers/pr_advantagesController");
 
 router.post(
   "/register",
@@ -50,6 +52,19 @@ router.post("/pr_slider/create", pr_sliderController.createSlider);
 router.get("/pr_slider", pr_sliderController.getAll);
 router.put("/pr_slider/update/:id", pr_sliderController.updateSlider);
 router.delete("/pr_slider/delete/:id", pr_sliderController.deleteSlider);
+
+router.post("/pr_layout/create", pr_layoutController.createLayout);
+router.get("/pr_layout", pr_layoutController.getAll);
+router.put("/pr_layout/update/:id", pr_layoutController.updateLayout);
+router.delete("/pr_layout/delete/:id", pr_layoutController.deleteLayout);
+
+router.post("/pr_advantages/create", pr_advantagesController.createAdvantages);
+// router.get("/pr_advantages", pr_layoutController.getAll);
+// router.put("/pr_advantages/update/:id", pr_layoutController.updateAdvantages);
+router.delete(
+  "/pr_advantages/delete/:id",
+  pr_advantagesController.deleteAdvantages
+);
 
 // news , delete news by id , create news , update news by id
 router.get("/news", newsController.getAll);
