@@ -17,6 +17,7 @@ const analiticsController = require("../controllers/analiticsController");
 const pr_sliderController = require("../controllers/pr_sliderController");
 const pr_layoutController = require("../controllers/pr_layoutController");
 const pr_advantagesController = require("../controllers/pr_advantagesController");
+const pr_contactController = require("../controllers/pr_contactController");
 
 router.post(
   "/register",
@@ -59,12 +60,20 @@ router.put("/pr_layout/update/:id", pr_layoutController.updateLayout);
 router.delete("/pr_layout/delete/:id", pr_layoutController.deleteLayout);
 
 router.post("/pr_advantages/create", pr_advantagesController.createAdvantages);
-// router.get("/pr_advantages", pr_layoutController.getAll);
-// router.put("/pr_advantages/update/:id", pr_layoutController.updateAdvantages);
+router.get("/pr_advantages", pr_advantagesController.getAll);
+router.put(
+  "/pr_advantages/update/:id",
+  pr_advantagesController.updateAdvantages
+);
 router.delete(
   "/pr_advantages/delete/:id",
   pr_advantagesController.deleteAdvantages
 );
+
+router.post("/pr_contact/create", pr_contactController.createContact);
+// router.get("/pr_contact", pr_layoutController.getAll);
+router.put("/pr_contact/update/:id", pr_contactController.updateContact);
+router.delete("/pr_contact/delete/:id", pr_contactController.deleteContact);
 
 // news , delete news by id , create news , update news by id
 router.get("/news", newsController.getAll);

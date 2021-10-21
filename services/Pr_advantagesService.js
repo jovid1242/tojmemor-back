@@ -8,7 +8,7 @@ class Pr_advantagesService {
   async create(value) {
     return await Pr_advantage.create(value);
   }
-  async update(value, id) {
+  async updateAdvantages(value, id) {
     return Pr_advantage.findOne({ where: { id: id } }).then(function (obj) {
       // update
       if (obj) return obj.update(value);

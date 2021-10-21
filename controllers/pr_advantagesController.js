@@ -1,8 +1,5 @@
 const pr_advantageDto = require("../dtos/pr_advantageDto");
-const ApiError = require("../exceptions/apiError");
 const Pr_advantagesService = require("../services/Pr_advantagesService");
-const path = require("path");
-const uuid = require("uuid");
 
 class pr_advantagesController {
   async getAll(req, res, next) {
@@ -34,7 +31,7 @@ class pr_advantagesController {
     }
   }
 
-  async updateLayout(req, res, next) {
+  async updateAdvantages(req, res, next) {
     try {
       let params = req.body;
 
@@ -42,8 +39,7 @@ class pr_advantagesController {
         text: params.text,
         project_id: params.project_id,
       };
-
-      const updating = await Pr_advantagesService.updateSlider(
+      const updating = await Pr_advantagesService.updateAdvantages(
         project,
         req.params.id
       );
