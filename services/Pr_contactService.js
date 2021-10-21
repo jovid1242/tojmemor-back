@@ -14,6 +14,9 @@ class Pr_contactService {
       if (obj) return obj.update(value);
     });
   }
+  async getById(id) {
+    return await Pr_contacts.findOne({ where: { id: id } });
+  }
   async deleteContact(id) {
     return Pr_contacts.destroy({ where: { id: id } });
   }

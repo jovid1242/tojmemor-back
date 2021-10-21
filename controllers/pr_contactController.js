@@ -17,6 +17,15 @@ class pr_contactController {
     }
   }
 
+  async getById(req, res, next) {
+    try {
+      let data = await Pr_contactService.getById(req.params.id);
+      return res.json({ data });
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async createContact(req, res, next) {
     try {
       let params = req.body;

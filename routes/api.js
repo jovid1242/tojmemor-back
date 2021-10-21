@@ -18,6 +18,7 @@ const pr_sliderController = require("../controllers/pr_sliderController");
 const pr_layoutController = require("../controllers/pr_layoutController");
 const pr_advantagesController = require("../controllers/pr_advantagesController");
 const pr_contactController = require("../controllers/pr_contactController");
+const vacanciesController = require("../controllers/vacanciesController");
 
 router.post(
   "/register",
@@ -70,8 +71,15 @@ router.delete(
   pr_advantagesController.deleteAdvantages
 );
 
+//vacancies
+router.get("/vacancies", vacanciesController.getAll);
+router.get("/vacancies/:id", vacanciesController.getById);
+router.post("/vacancies/create", vacanciesController.createVacancies);
+router.put("/vacancies/update/:id", vacanciesController.updateVacancies);
+router.delete("/vacancies/delete/:id", vacanciesController.deleteVacancies);
+
 router.post("/pr_contact/create", pr_contactController.createContact);
-// router.get("/pr_contact", pr_layoutController.getAll);
+router.get("/pr_contact/:id", pr_contactController.getById);
 router.put("/pr_contact/update/:id", pr_contactController.updateContact);
 router.delete("/pr_contact/delete/:id", pr_contactController.deleteContact);
 
