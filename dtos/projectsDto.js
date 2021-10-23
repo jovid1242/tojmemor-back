@@ -10,11 +10,6 @@ module.exports = class projectsDto {
     this.title = model.title;
     this.text = model.text;
     this.url = model.url;
-    this.image = this.getStorageLink(model.image);
-  }
-
-  getStorageLink(link) {
-    const storageUrl = process.env.STORAGE_URL + "/storage/uploads";
-    return storageUrl + link;
+    this.image = model.image;
   }
 };
