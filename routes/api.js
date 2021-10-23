@@ -80,6 +80,7 @@ router.delete("/vacancies/delete/:id", vacanciesController.deleteVacancies);
 
 router.post("/pr_contact/create", pr_contactController.createContact);
 router.get("/pr_contact/:id", pr_contactController.getById);
+router.get("/pr_contact/", pr_contactController.getAll);
 router.put("/pr_contact/update/:id", pr_contactController.updateContact);
 router.delete("/pr_contact/delete/:id", pr_contactController.deleteContact);
 
