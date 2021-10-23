@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pr_advantage.init(
     {
-      project_id: DataTypes.NUMBER,
-      text: DataTypes.TEXT,
+      project_id: DataTypes.INTEGER,
+      text: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "Pr_advantage",
-      tableName: "pr_advantage",
+      tableName: "pr_advantages",
     }
   );
   return Pr_advantage;
