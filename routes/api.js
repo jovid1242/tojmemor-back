@@ -84,7 +84,7 @@ router.get("/pr_contact", pr_contactController.getAll);
 router.put("/pr_contact/update/:id", pr_contactController.updateContact);
 router.delete("/pr_contact/delete/:id", pr_contactController.deleteContact);
 
-// news , delete news by id , create news , update news by id
+// news , delete news by id , create news , update news by id and all
 router.get("/news", newsController.getAll);
 router.get("/news/:newsId", newsController.getNews);
 router.get("/get_news", newsController.getByPage);
