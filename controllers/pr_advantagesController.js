@@ -22,7 +22,7 @@ class pr_advantagesController {
       let params = req.body;
       const layout = {
         text: params.text,
-        project_id: params.project_id,
+        projects_id: params.project_id,
       };
       const creating = await Pr_advantagesService.create(layout);
       return res.json({ creating });
@@ -37,7 +37,7 @@ class pr_advantagesController {
 
       const project = {
         text: params.text,
-        project_id: params.project_id,
+        projects_id: params.project_id,
       };
       const updating = await Pr_advantagesService.updateAdvantages(
         project,
