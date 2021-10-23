@@ -4,14 +4,14 @@ const Pr_advantagesService = require("../services/Pr_advantagesService");
 class pr_advantagesController {
   async getAll(req, res, next) {
     try {
-      const pr_layouts = [];
+      const pr_advantages = [];
       const collections = await Pr_advantagesService.getAll();
 
       collections.forEach((el) => {
-        pr_layouts.push(new pr_advantageDto(el));
+        pr_advantages.push(new pr_advantageDto(el));
       });
 
-      return res.json({ pr_layouts });
+      return res.json({ pr_advantages });
     } catch (e) {
       next(e);
     }
