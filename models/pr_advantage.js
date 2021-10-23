@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pr_advantage.init(
     {
-      projects_id: DataTypes.NUMBER,
+      project_id: DataTypes.NUMBER,
       text: DataTypes.TEXT,
     },
     {
