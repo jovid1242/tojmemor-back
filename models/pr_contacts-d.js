@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pr_contacts.init(
     {
-      project_id: DataTypes.INTEGER,
+      project_id: DataTypes.NUMBER,
       adress: DataTypes.TEXT,
-      phone: DataTypes.TEXT,
+      phone: DataTypes.NUMBER,
       email: DataTypes.STRING,
       url: DataTypes.TEXT,
     },
