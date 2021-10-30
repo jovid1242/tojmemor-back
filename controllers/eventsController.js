@@ -127,7 +127,7 @@ class eventsController {
 
   async getEvent(req, res, next) {
     try {
-      let event = await EventsService.getEventst(req.params.eventsId);
+      let event = await EventsService.getEvents(req.params.eventsId);
       return res.json({ event });
     } catch (e) {
       next(e);
